@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+    <title>青年大学习截图生成器</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>青年大学习截图生成器</h1>
+    </div>
+    <div class="img-column"></div>
+  </body>
+  <script>
+    let footer = document.createElement("footer");
+    footer.innerHTML = `<footer">&copy; Copyright ${new Date().getFullYear()} MR-Addict</footer>`;
+    document.body.appendChild(footer);
+  </script>
+</html>
