@@ -47,7 +47,7 @@ function render_row(row) {
     const img_button2 = document.createElement("button");
     img_buttons.className = "img-buttons";
     img_button1.innerText = "复制链接";
-    img_button2.innerText = "下载图片";
+    img_button2.innerText = "下载截图";
     img_buttons.appendChild(img_button1);
     img_buttons.appendChild(img_button2);
     img_button1.addEventListener("click", () => {
