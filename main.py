@@ -46,6 +46,6 @@ def get_img_links():
 
 if __name__ == '__main__':
     img_link_dic = get_img_links()
-    with open('data.json', 'w') as file:
+    with open('pages/data.json', 'w') as file:
         json.dump(img_link_dic, file, ensure_ascii=True)
     copy_files('pages/', 'public/')
