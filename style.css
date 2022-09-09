@@ -32,7 +32,7 @@ body {
 }
 
 /* github */
-.github img {
+.github {
   position: absolute;
   top: 0;
   right: 0;
@@ -69,7 +69,7 @@ body {
   padding: 1rem;
   background: var(--pri-white);
   border-radius: 1rem;
-  box-shadow: 0.5rem 1rem var(--pri-grey);
+  box-shadow: 1rem 1rem var(--pri-grey);
 
   display: flex;
   flex-direction: column;
@@ -85,6 +85,7 @@ body {
 
 .img-element img {
   width: 30rem;
+  border-radius: 1rem;
 }
 
 .img-buttons {
