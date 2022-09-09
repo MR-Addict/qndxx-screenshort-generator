@@ -31,6 +31,18 @@ body {
   justify-content: center;
 }
 
+/* github */
+.github img {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.github img {
+  width: 23rem;
+}
+
+/* header */
 .header h1 {
   font-size: 4rem;
   padding: 2rem;
@@ -92,12 +104,12 @@ body {
   background: var(--pri-green);
 }
 
-.img-buttons button:hover {
+.img-buttons button:hover:enabled {
   background: var(--pri-pink);
 }
 
 button[disabled] {
-  pointer-events: none;
+  cursor: not-allowed;
   background: var(--pri-grey);
 }
 
@@ -111,6 +123,9 @@ footer {
   html {
     font-size: 40%;
   }
+  .github {
+    display: none;
+  }
   .img-row {
     flex-direction: column;
   }
@@ -119,6 +134,9 @@ footer {
   }
   .img-element img {
     width: 43rem;
+  }
+  .img-buttons button:hover {
+    background: var(--pri-green);
   }
   footer {
     font-size: 2rem;
