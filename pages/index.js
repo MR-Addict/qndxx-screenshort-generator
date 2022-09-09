@@ -1,5 +1,5 @@
 // fetch data
-fetch("./data.json")
+fetch("data.json")
   .then((response) => {
     return response.json();
   })
@@ -69,19 +69,3 @@ function render_row(row) {
   });
   return img_row;
 }
-
-// function render_button_fun() {
-//   document.querySelectorAll(".img-buttons").forEach((prop) => {
-//     const buttons = prop.querySelectorAll("button");
-//     buttons[0].addEventListener("click", () => {
-//       navigator.clipboard.writeText(buttons[0].closest(".img-element").querySelector("img").src);
-//     });
-//     buttons[1].addEventListener("click", () => {
-//       let a_tag = document.createElement("a");
-//       a_tag.href = buttons[1].closest(".img-element").querySelector("img").src;
-//       a_tag.download = buttons[1].closest(".img-element").querySelector("h1").innerText + ".jpg";
-//       a_tag.click();
-//       a_tag.remove();
-//     });
-//   });
-// }
