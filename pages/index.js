@@ -53,7 +53,7 @@ function render_row(row) {
     img_button1.addEventListener("click", () => {
       navigator.clipboard.writeText(element.link);
       img_button1.title = "复制";
-      alert("复制成功");
+      Fnon.Alert.Dark("复制成功", "操作提醒", "OK", () => {});
     });
     img_button2.addEventListener("click", () => {
       let a_tag = document.createElement("a");
