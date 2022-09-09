@@ -52,6 +52,8 @@ function render_row(row) {
     img_buttons.appendChild(img_button2);
     img_button1.addEventListener("click", () => {
       navigator.clipboard.writeText(element.link);
+      img_button1.title = "复制";
+      alert("复制成功");
     });
     img_button2.addEventListener("click", () => {
       let a_tag = document.createElement("a");
