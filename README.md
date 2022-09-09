@@ -2,4 +2,4 @@
 
 截图网址
 
-- [https://mraddict.one/qndxx-screenshort-generator](https://mraddict.one/qndxx-screenshort-generator)
+- [https://mr-addict.github.io/qndxx-screenshort-generator](https://mr-addict.github.io/qndxx-screenshort-generator)
