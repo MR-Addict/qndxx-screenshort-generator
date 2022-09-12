@@ -48,7 +48,13 @@ pip install -r requirements.txt
 python main.py
 ```
 
-这一步会生成一个`public`文件夹，也就是最终的网页文档了，双击其中的`index.html`打开即可。
+这一步会生成一个`public`文件夹，也就是最终的网页文档了。
+
+第四步：搭建web服务器
+
+```bash
+python -m http.server 8085 --directory public
+```
 
 ## 5. 结束
 
