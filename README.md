@@ -53,7 +53,7 @@ python main.py
 第四步：搭建web服务器
 
 ```bash
-python -m http.server 8085 --directory public
+python -m http.server 8080 --directory public
 ```
 
 ## 5. 结束
