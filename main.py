@@ -28,7 +28,7 @@ def get_img_title(img_link):
 
 def get_img_links():
     img_links = {"data": []}
-    source_url = "http://news.cyol.com/gb/channels/vrGlAKDl"
+    source_url = "http://news.cyol.com/gb/channels/vrGlAKDl/index.html"
     res = requests.get(source_url)
     soup = BeautifulSoup(res.content, "html.parser")
     for index, prop in enumerate(soup.select(".movie-list h3 a")):

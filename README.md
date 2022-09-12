@@ -22,7 +22,7 @@
 
 本项目的原理非常简单
 
-- 第一步：从[中青在线](http://news.cyol.com/gb/channels/vrGlAKDl)抓取最新的大学习链接
+- 第一步：从[中青在线](http://news.cyol.com/gb/channels/vrGlAKDl/index.html)抓取最新的大学习链接
 - 第二步：将获取的链接尾的`m.html`或`m2.html`替换成`images/end.jpg`即为这一期的大学习结束的截图链接
 
 > 青年大学习也是可以使用脚本的，有基础的同学可以参考这个项目，里面有详细介绍大学习的原理
