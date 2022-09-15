@@ -278,14 +278,14 @@
     }
     // copy link
     function button_copy(element) {
-      const link = element.closest(".img-element").querySelector("input").value;
+      link = element.closest(".img-element").querySelector("input").value;
       navigator.clipboard.writeText(link);
       Fnon.Alert.Dark(link, "复制成功", "OK", () => {});
     }
     // download image
     function button_download(element) {
       const title = element.closest(".img-element").querySelector("h1").innerText + ".jpg";
-      const link = element.closest(".img-element").querySelector("input").value;
+      const link = element.closest(".img-element").querySelector("img").src;
       const a_tag = document.createElement("a");
       a_tag.href = link;
       a_tag.download = title;
