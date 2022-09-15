@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="libs/fnon.min.css" />
+    <script src="libs/fnon.min.js" defer></script>
+    <title>青年大学习截图生成器</title>
+  </head>
+  <body>
+    <div class="github">
+      <img src="github.png" usemap="#github-map" alt="image" />
+      <map name="github-map">
+        <area
+          alt="github-map"
+          shape="poly"
+          coords="498,492,498,0,0,1"
+          target="_blank"
+          href="https://github.com/MR-Addict/qndxx-screenshort-generator"
+        />
+      </map>
+    </div>
+    <div class="header">
+      <h1>青年大学习截图生成器</h1>
+    </div>
+  </body>
+  <script>
+    // create footer
+    const footer = document.createElement("footer");
+    footer.innerHTML = `<footer">&copy; Copyright ${new Date().getFullYear()} MR-Addict</footer>`;
+    document.body.appendChild(footer);
+    // set image error image
+    function img_error(element) {
+      element.src = "404.png";
+      element
+        .closest(".img-element")
+        .querySelectorAll("button")
+        .forEach((but) => {
+          but.disabled = true;
+        });
+    }
+    // copy link
+    function button_copy(element) {
+      link = element.closest(".img-element").querySelector("input").value;
+      navigator.clipboard.writeText(link);
+      Fnon.Alert.Dark(link, "复制成功", "OK", () => {});
+    }
+    // download image
+    function button_download(element) {
+      const title = element.closest(".img-element").querySelector("h1").innerText + ".jpg";
+      const link = element.closest(".img-element").querySelector("img").src;
+      const a_tag = document.createElement("a");
+      a_tag.href = link;
+      a_tag.download = title;
+      a_tag.click();
+      a_tag.remove();
+    }
+  </script>
+</html>
