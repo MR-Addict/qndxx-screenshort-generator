@@ -52,13 +52,7 @@ python main.py
 
 第四步：搭建web服务器
 
-如果你有node可以运行这条命令：
-
-```bash
-node index.js
-```
-
-没有node可以使用python：
+启动web服务器：
 
 ```bash
 python -m http.server 8080 --directory public
