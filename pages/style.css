@@ -85,7 +85,9 @@ body {
 
 .img-element img {
   width: 30rem;
+  height: calc(30rem * 1.6);
   border-radius: 1rem;
+  object-fit: cover;
 }
 
 .img-buttons {
@@ -135,6 +137,7 @@ footer {
   }
   .img-element img {
     width: 43rem;
+    height: calc(43rem * 1.6);
   }
   .img-buttons button:hover {
     background: var(--pri-green);

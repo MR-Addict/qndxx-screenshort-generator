@@ -63,7 +63,7 @@ def gen_one_tag(img_path, name, title, link):
     h1_tag.string = title
 
     img_tag = soup.new_tag(
-        "img", attrs={"data-src": img_path+name, 'onerror': 'img_error(this)', "class": "lazyload"})
+        "img", attrs={"data-src": img_path+name, "alt": "image", 'onerror': 'img_error(this)', "class": "lazyload"})
     input_tag = soup.new_tag("input", attrs={"type": "hidden", 'value': link})
 
     buttons_tag = soup.new_tag("div", attrs={"class": "img-buttons"})
