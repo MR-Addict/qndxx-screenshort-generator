@@ -1,6 +1,7 @@
 import os
 import shutil
 import requests
+from requests_html import HTMLSession
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 import urllib.request
@@ -28,8 +29,10 @@ def get_img_title(img_link):
 def get_img_links():
     img_links = []
     source_url = "http://news.cyol.com/gb/channels/vrGlAKDl/index.html"
-    res = requests.get(source_url)
-    soup = BeautifulSoup(res.content, "html.parser")
+    session = HTMLSession()
+    res = session.get(source_url)
+    res.html.render()
+    soup = BeautifulSoup(res.html.html, "html.parser")
     for index, prop in enumerate(soup.select(".movie-list h3 a")):
         if index < 15:
             url = prop['href']
@@ -60,7 +63,7 @@ def gen_one_tag(img_path, name, title, link):
     h1_tag.string = title
 
     img_tag = soup.new_tag(
-        "img", attrs={"src": img_path+name, 'alt': 'image', 'onerror': 'img_error(this)'})
+        "img", attrs={"data-src": img_path+name, 'onerror': 'img_error(this)', "class": "lazyload"})
     input_tag = soup.new_tag("input", attrs={"type": "hidden", 'value': link})
 
     buttons_tag = soup.new_tag("div", attrs={"class": "img-buttons"})
@@ -90,7 +93,7 @@ def gen_row_tag(elements):
 
 
 def gen_column_tag():
-    soup = BeautifulSoup(get_html('index.html'), "html.parser")
+    soup = BeautifulSoup(get_html('pages/index.html'), "html.parser")
     row_column = soup.new_tag("div", attrs={"class": "img-column"})
     for elements in split_array(get_img_links(), 3):
         row_column.append(gen_row_tag(elements))
@@ -101,7 +104,7 @@ def gen_column_tag():
 if __name__ == '__main__':
     if not os.path.exists('public'):
         os.makedirs('public')
-    with open('public/index.html', "w") as outfile:
-        outfile.write(str(gen_column_tag()))
     copy_files('pages/', 'public/')
+    with open('public/index.html', "w", encoding="utf-8") as outfile:
+        outfile.write(str(gen_column_tag()))
     print("[INFO] Static files generated!")
