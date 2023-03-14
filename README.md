@@ -37,7 +37,7 @@ pip install -r requirements.txt
 第三步：运行 python 脚本：
 
 ```bash
-python main.py
+python src/main.py
 ```
 
 这一步会生成一个`public`文件夹，也就是最终的网页文档了。

@@ -22,7 +22,7 @@ jobs:
       - name: install requirements
         run: pip install -r requirements.txt
       - name: execute python script
-        run: python main.py
+        run: python -B src/main.py
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

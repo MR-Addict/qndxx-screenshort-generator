@@ -1,8 +1,9 @@
 import os
 import shutil
-import requests
 from bs4 import BeautifulSoup
 import urllib.request
+
+from qndxx import qndxx
 
 
 def copy_files(src, dest):
@@ -19,11 +20,11 @@ def download_image(url, folder, name, extension):
 
 def get_img_links():
     img_links = []
-    url = "https://api.mraddict.one/qndxx/list"
-    res = requests.get(url)
-    for item in res.json()['data']:
+
+    courses = qndxx()
+    for item in courses:
         title = item["title"]
-        link = item["endImguri"]
+        link = item["imgEndUri"]
         img_links.append({"title": title, "link": link, "path": "images/", 'name': f'{title}.jpg'})
         download_image(link, 'public/images/', title, '.jpg')
     return img_links
