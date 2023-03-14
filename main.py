@@ -1,8 +1,6 @@
 import os
 import shutil
 import requests
-from requests_html import HTMLSession
-from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 import urllib.request
 
@@ -19,30 +17,15 @@ def download_image(url, folder, name, extension):
     urllib.request.urlretrieve(url, full_path)
 
 
-def get_img_title(img_link):
-    res = requests.get(img_link)
-    soup = BeautifulSoup(res.content, "html.parser")
-    img_title = soup.title.text
-    return img_title.replace("“青年大学习”", '')
-
-
 def get_img_links():
     img_links = []
-    source_url = "http://news.cyol.com/gb/channels/vrGlAKDl/index.html"
-    session = HTMLSession()
-    res = session.get(source_url)
-    res.html.render()
-    soup = BeautifulSoup(res.html.html, "html.parser")
-    for index, prop in enumerate(soup.select(".movie-list h3 a")):
-        if index < 15:
-            url = prop['href']
-            title = get_img_title(url)
-            link = urljoin(url, urlparse(url).path).replace(
-                'm.html', 'images/end.jpg').replace(
-                'm2.html', 'images/end.jpg')
-            img_links.append(
-                {"title": title, "link": link, "path": "images/", 'name': f'{title}.jpg'})
-            download_image(link, 'public/images/', title, '.jpg')
+    url = "https://api.mraddict.one/qndxx/list"
+    res = requests.get(url)
+    for item in res.json()['data']:
+        title = item["title"]
+        link = item["endImguri"]
+        img_links.append({"title": title, "link": link, "path": "images/", 'name': f'{title}.jpg'})
+        download_image(link, 'public/images/', title, '.jpg')
     return img_links
 
 
