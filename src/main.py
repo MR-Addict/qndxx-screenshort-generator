@@ -1,10 +1,12 @@
 import os
 import pytz
+import shutil
 from bs4 import BeautifulSoup
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 
 from get_img_links import get_img_links
-from utils import download_image, copy_files
+from download_images import download_img
 from render_img_container import render_img_container
 
 
@@ -18,7 +20,7 @@ if __name__ == '__main__':
     public_path = os.path.join(os.getcwd(), 'public')
     if not os.path.exists(public_path):
         os.makedirs(public_path)
-    copy_files('pages', 'public')
+    shutil.copytree(os.path.join(os.getcwd(), 'pages'), os.path.join(os.getcwd(), 'public'), dirs_exist_ok=True)
 
     # render index.html
     print("Rendering index.html...")
@@ -28,7 +30,12 @@ if __name__ == '__main__':
 
     soup = BeautifulSoup(raw_html_str, "html.parser")
     soup.select_one('header').insert_after(render_img_container(img_links))
-    soup.select_one("footer .rendering-time").string = f"Last update:{formated_date}"
+    soup.select_one("footer .rendering-time").string = f"Last update {formated_date}"
 
     with open(os.path.join(os.getcwd(), 'public/index.html'), "w", encoding="utf-8") as output_html:
         output_html.write(str(soup.prettify()))
+
+    # download images concurrently
+    print("Downloading images...")
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        executor.map(lambda x: download_img(x['link'], 'public/images/', x['title']+'.jpg'), img_links)
