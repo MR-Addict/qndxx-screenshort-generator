@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 
+from download_img import download_img
 from get_img_links import get_img_links
-from download_images import download_img
 from render_img_container import render_img_container
 
 
