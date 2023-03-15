@@ -13,17 +13,8 @@ def get_img_links():
         title = item["title"]
         link = item["imgEndUri"]
         img_links.append({"title": title, "link": link, "path": "images/", 'name': f'{title}.jpg'})
-        # download_image(link, 'public/images/', title, '.jpg')
+        download_image(link, 'public/images/', title, '.jpg')
     return img_links
-
-
-def split_array(array, step):
-    return [array[i:i+step] for i in range(0, len(array), step)]
-
-
-def get_html(html_path):
-    with open(html_path, 'r', encoding="utf-8") as file:
-        return file.read()
 
 
 def gen_one_element(img_path, name, title, link):
@@ -55,7 +46,10 @@ def gen_one_element(img_path, name, title, link):
 
 
 def gen_img_container():
-    soup = BeautifulSoup(get_html('pages/index.html'), "html.parser")
+    with open(os.path.join(os.getcwd(), "pages/index.html"), 'r', encoding="utf-8") as file:
+        raw_html_str = file.read()
+        soup = BeautifulSoup(raw_html_str, "html.parser")
+
     img_container = soup.new_tag("ul", attrs={"class": "img-container"})
     for item in get_img_links():
         img_container.append(gen_one_element(item['path'], item['name'], item['title'], item['link']))
