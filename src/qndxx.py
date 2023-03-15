@@ -15,8 +15,8 @@ def fetchOnePage(page):
 
     for course in list[::-1]:
         title = course["title"]
-        imgEndUri = urljoin(course['uri'], 'images/end.jpg')
-        courses.append({"title": title, "imgEndUri": imgEndUri})
+        screenshot = urljoin(course['uri'], 'images/end.jpg')
+        courses.append({"title": title, "screenshot": screenshot})
     return ({"pagedInfo": pagedInfo, "courses": courses})
 
 
