@@ -1,6 +1,6 @@
-import re
 import math
 import requests
+from urllib.parse import urljoin
 
 
 def fetchOnePage(page):
@@ -15,7 +15,7 @@ def fetchOnePage(page):
 
     for course in list[::-1]:
         title = course["title"]
-        imgEndUri = re.sub(r'\/\w+\.html$', '/images/end.jpg', course['uri'])
+        imgEndUri = urljoin(course['uri'], 'images/end.jpg')
         courses.append({"title": title, "imgEndUri": imgEndUri})
     return ({"pagedInfo": pagedInfo, "courses": courses})
 

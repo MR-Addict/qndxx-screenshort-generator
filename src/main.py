@@ -1,21 +1,8 @@
 import os
-import shutil
 from bs4 import BeautifulSoup
-import urllib.request
 
 from qndxx import qndxx
-
-
-def copy_files(src, dest):
-    shutil.copytree(os.getcwd()+'/'+src, os.getcwd() + '/' +
-                    dest, dirs_exist_ok=True)
-
-
-def download_image(url, folder, name, extension):
-    full_path = folder + name + extension
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-    urllib.request.urlretrieve(url, full_path)
+from utils import download_image, copy_files
 
 
 def get_img_links():
@@ -26,7 +13,7 @@ def get_img_links():
         title = item["title"]
         link = item["imgEndUri"]
         img_links.append({"title": title, "link": link, "path": "images/", 'name': f'{title}.jpg'})
-        download_image(link, 'public/images/', title, '.jpg')
+        # download_image(link, 'public/images/', title, '.jpg')
     return img_links
 
 
@@ -39,9 +26,9 @@ def get_html(html_path):
         return file.read()
 
 
-def gen_one_tag(img_path, name, title, link):
+def gen_one_element(img_path, name, title, link):
     soup = BeautifulSoup('', "html.parser")
-    element_tag = soup.new_tag("div", attrs={"class": "img-element"})
+    element_tag = soup.new_tag("li", attrs={"class": "img-element"})
 
     h1_tag = soup.new_tag("h1")
     h1_tag.string = title
@@ -67,28 +54,24 @@ def gen_one_tag(img_path, name, title, link):
     return element_tag
 
 
-def gen_row_tag(elements):
-    soup = BeautifulSoup('', "html.parser")
-    row_tag = soup.new_tag("div", attrs={"class": "img-row"})
-    for ele in elements:
-        row_tag.append(gen_one_tag(
-            ele['path'], ele['name'], ele['title'], ele['link']))
-    return row_tag
-
-
-def gen_column_tag():
+def gen_img_container():
     soup = BeautifulSoup(get_html('pages/index.html'), "html.parser")
-    row_column = soup.new_tag("div", attrs={"class": "img-column"})
-    for elements in split_array(get_img_links(), 3):
-        row_column.append(gen_row_tag(elements))
-    soup.html.body.append(row_column)
+    img_container = soup.new_tag("ul", attrs={"class": "img-container"})
+    for item in get_img_links():
+        img_container.append(gen_one_element(item['path'], item['name'], item['title'], item['link']))
+    soup.html.body.append(img_container)
     return soup.prettify()
 
 
 if __name__ == '__main__':
-    if not os.path.exists('public'):
-        os.makedirs('public')
-    copy_files('pages/', 'public/')
-    with open('public/index.html', "w", encoding="utf-8") as outfile:
-        outfile.write(str(gen_column_tag()))
-    print("[INFO] Static files generated!")
+    # copy public files
+    public_path = os.path.join(os.getcwd(), 'public')
+    if not os.path.exists(public_path):
+        os.makedirs(public_path)
+    copy_files('pages', 'public')
+
+    # generate static files
+    with open(os.path.join(os.getcwd(), 'public/index.html'), "w", encoding="utf-8") as outfile:
+        img_container_str = str(gen_img_container())
+        outfile.write(img_container_str)
+        print("[INFO] Static files generated!")

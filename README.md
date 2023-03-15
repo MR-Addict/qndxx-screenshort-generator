@@ -12,9 +12,9 @@
 
 本项目受 Github 众多有关青年大学习项目的启发，做这个项目也是觉得好玩。
 
-本项目使用 Python 抓取网页链接，使用`GitHub Action`在每周一的上午 12 点多自动更新，同时会将抓取结果部署在`GitHub Pages`上。
+本项目使用我的另一个[API 项目](https://github.com/MR-Addict/api#3-qndxx-screenshot-api)获取最新的 10 个青年大学习数据，每周一的上午 12 点左右会自动更新。
 
-进入项目部署的网址会显示抓取的`最多15张`大学习截图，同时每期的大学习截图下方有两个按钮，复制按钮用于复制原始的大学习截图链接，如果你需要的话；下载按钮用于下载这一期的大学习截图。
+进入项目部署的网址会显示抓取的`最多10张`大学习截图，同时每期的大学习截图下方有两个按钮，复制按钮用于复制原始的大学习截图链接，如果你需要的话；下载按钮用于下载这一期的大学习截图。
 
 > 本项目受到启发的项目
 >
@@ -37,17 +37,15 @@ pip install -r requirements.txt
 第三步：运行 python 脚本：
 
 ```bash
-python src/main.py
+python -B src/main.py
 ```
 
 这一步会生成一个`public`文件夹，也就是最终的网页文档了。
 
-第四步：搭建 web 服务器
-
-启动 web 服务器：
+第四步：启动 web 服务器
 
 ```bash
-python -m http.server 8080 --directory public
+python -B src/index.py
 ```
 
 Happy coding！

@@ -6,10 +6,10 @@
 :root {
   --pri-bcg: #f0f0f0;
   --pri-white: #ffffff;
-  --pri-grey: #a0a0a0;
+  --pri-gray: #a0a0a0;
   --pri-green: #309e9b;
   --pri-pink: #ff0063;
-  --pri-dark-grey: #505050;
+  --pri-dark-gray: #505050;
 }
 
 html {
@@ -19,11 +19,10 @@ html {
 /* body */
 body {
   width: 100%;
-  min-width: 50rem;
   min-height: 100vh;
   background: var(--pri-bcg);
   font-size: 1.6rem;
-  color: var(--pri-dark-grey);
+  color: var(--pri-dark-gray);
 
   display: flex;
   flex-direction: column;
@@ -45,31 +44,21 @@ body {
 /* header */
 .header h1 {
   font-size: 4rem;
-  padding: 2rem;
+  margin-block: 4rem;
 }
 
 /* image */
-.img-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-}
-
-.img-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
+.img-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4rem;
 }
 
 .img-element {
   padding: 1rem;
   background: var(--pri-white);
   border-radius: 1rem;
-  box-shadow: 1rem 1rem var(--pri-grey);
+  box-shadow: 0 0 1rem var(--pri-gray);
 
   display: flex;
   flex-direction: column;
@@ -84,27 +73,32 @@ body {
 }
 
 .img-element img {
-  width: 30rem;
-  height: calc(30rem * 1.6);
+  max-height: 50rem;
   border-radius: 1rem;
   object-fit: cover;
+
+  aspect-ratio: 828/1344;
 }
 
 .img-buttons {
+  width: 100%;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  gap: 2rem;
 }
 
 .img-buttons button {
-  width: 40%;
+  width: 100%;
   border: none;
   padding: 1rem;
   border-radius: 1rem;
   cursor: pointer;
   color: var(--pri-white);
   background: var(--pri-green);
+  transition: 300ms;
+  box-shadow: 0 0 0.5rem var(--pri-gray);
 }
 
 .img-buttons button:hover:enabled {
@@ -113,7 +107,7 @@ body {
 
 button[disabled] {
   cursor: not-allowed;
-  background: var(--pri-grey);
+  background: var(--pri-gray);
 }
 
 /* footer */
@@ -123,26 +117,16 @@ footer {
 }
 
 @media screen and (max-width: 800px) {
-  html {
-    font-size: 40%;
-  }
   .github {
     display: none;
   }
-  .img-row {
-    flex-direction: column;
+  .img-container {
+    grid-template-columns: 1fr;
   }
   .header h1 {
-    font-size: 3.8rem;
+    font-size: 3rem;
   }
-  .img-element img {
-    width: 43rem;
-    height: calc(43rem * 1.6);
-  }
-  .img-buttons button:hover {
-    background: var(--pri-green);
-  }
-  footer {
+  .img-element h1 {
     font-size: 2rem;
   }
 }
