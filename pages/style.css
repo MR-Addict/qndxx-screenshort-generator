@@ -116,6 +116,7 @@ footer {
   font-size: 1.6rem;
   display: flex;
   flex-direction: row;
+  text-align: center;
   gap: 1rem;
 }
 
