@@ -29,11 +29,11 @@ def qndxx():
     courses = []
     onePage = fetchOnePage(totalPages)
     courses.extend(onePage["courses"])
-    if len(onePage["courses"]) < 10:
+    if len(onePage["courses"]) < 9:
         anotherPage = fetchOnePage(totalPages-1)
         courses.extend(anotherPage["courses"])
 
-    return courses[:10]
+    return courses[:9]
 
 
 def get_img_links():

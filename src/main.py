@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 
-from download_img import download_img
-from get_img_links import get_img_links
-from render_img_container import render_img_container
+from lib.download_img import download_img
+from lib.get_img_links import get_img_links
+from lib.render_img_container import render_img_container
 
 
 if __name__ == '__main__':
@@ -20,11 +20,11 @@ if __name__ == '__main__':
     public_path = os.path.join(os.getcwd(), 'public')
     if not os.path.exists(public_path):
         os.makedirs(public_path)
-    shutil.copytree(os.path.join(os.getcwd(), 'pages'), os.path.join(os.getcwd(), 'public'), dirs_exist_ok=True)
+    shutil.copytree(os.path.join(os.getcwd(), 'static'), os.path.join(os.getcwd(), 'public'), dirs_exist_ok=True)
 
     # render index.html
     print("Rendering index.html...")
-    with open(os.path.join(os.getcwd(), "pages/index.html"), 'r', encoding="utf-8") as file:
+    with open(os.path.join(os.getcwd(), "static/index.html"), 'r', encoding="utf-8") as file:
         raw_html_str = file.read()
     formated_date = datetime.now(pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S')
 

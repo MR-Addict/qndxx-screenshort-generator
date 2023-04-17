@@ -45,7 +45,7 @@ python -B src/main.py
 第四步：启动 web 服务器
 
 ```bash
-python -B src/index.py
+python -B src/serve.py
 ```
 
 Happy coding！
