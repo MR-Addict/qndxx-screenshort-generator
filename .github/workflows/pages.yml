@@ -12,19 +12,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout branch
-        uses: actions/checkout@v3
-      - name: setup python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.9
           cache: "pip"
-      - name: install requirements
+
+      - name: Install requirements
         run: pip install -r requirements.txt
-      - name: execute python script
+
+      - name: Execute script
         run: python -B src/main.py
-      - name: deploy
-        uses: peaceiris/actions-gh-pages@v3
+
+      - name: Push build to gh-pages
+        uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: public
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
