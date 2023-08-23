@@ -10,23 +10,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-python@v4
         with:
           python-version: 3.9
           cache: "pip"
 
-      - name: Install requirements
-        run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
-      - name: Execute script
-        run: python -B src/main.py
+      - run: python -B src/main.py
 
-      - name: Push build to gh-pages
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+      - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: gh-pages
           build_dir: public
