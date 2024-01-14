@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pri-bcg: #f0f0f0;
+  --pri-white: #ffffff;
+  --pri-gray: #a0a0a0;
+  --pri-green: #309e9b;
+  --pri-pink: #ff0063;
+  --pri-dark-gray: #505050;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+/* body */
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--pri-bcg);
+  font-size: 1.6rem;
+  color: var(--pri-dark-gray);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* github */
+.github {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.github img {
+  width: 23rem;
+}
+
+/* header */
+.header h1 {
+  font-size: 4rem;
+  margin-block: 4rem;
+}
+
+/* image */
+.img-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4rem;
+}
+
+.img-element {
+  padding: 1rem;
+  background: var(--pri-white);
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem var(--pri-gray);
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.img-element h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.img-element img {
+  max-height: 50rem;
+  border-radius: 1rem;
+  object-fit: cover;
+
+  aspect-ratio: 828/1344;
+}
+
+.img-buttons {
+  width: 100%;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.img-buttons button {
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  color: var(--pri-white);
+  background: var(--pri-green);
+  transition: 300ms;
+  box-shadow: 0 0 0.5rem var(--pri-gray);
+}
+
+.img-buttons button:hover:enabled {
+  background: var(--pri-pink);
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  background: var(--pri-gray);
+}
+
+/* footer */
+footer {
+  margin: 2rem 0 1rem;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .github {
+    display: none;
+  }
+  .img-container {
+    grid-template-columns: 1fr;
+  }
+  .header h1 {
+    font-size: 3rem;
+  }
+  footer {
+    flex-direction: column;
+    gap: 0rem;
+  }
+}
